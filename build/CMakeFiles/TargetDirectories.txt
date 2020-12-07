@@ -1,0 +1,7 @@
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/install/strip.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/install.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/list_install_components.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/rebuild_cache.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/edit_cache.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/install/local.dir
+/Applications/GEANT4/geant4_10_05_p01/NAUSICAA/FALCON_Xray_source/build/CMakeFiles/FALCON.dir
