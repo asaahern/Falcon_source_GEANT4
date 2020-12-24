@@ -75,13 +75,13 @@ const G4Run* run = G4RunManager::GetRunManager()->GetCurrentRun();   //G4int run
 const G4Event * event = G4EventManager::GetEventManager()->GetConstCurrentEvent();
 	
 
-G4String ParticleName = track->GetDynamicParticle()->
-                                 GetParticleDefinition()->GetParticleName();
-G4String processName = step->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName();
+G4String ParticleName = track->GetDynamicParticle()->GetParticleDefinition()->GetParticleName();
+//G4String processName = step->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName();
+G4double posz = track->GetPosition().getZ();
     
 // ---------------- Primary Processes ------------------------
  
-if (ParticleName == "gamma" && (processName=="compt" || processName=="phot")){ // !!!! No transport processes considered -->  processName!="Transportation"
+if (ParticleName == "gamma" && posz<17.3 && posz>0.1){ // !! select only photons interacting in the volume between the source and the FATGEM
 	  
   	std::ofstream file;
   	G4String name="PrimaryProcesses_P"+ std::to_string(run->GetRunID())+ "bar.dat";
@@ -93,21 +93,17 @@ if (ParticleName == "gamma" && (processName=="compt" || processName=="phot")){ /
   		ifile.close();
   		file.open(name.c_str(), std::ofstream::out | std::ofstream::app );
   
-		file << processName <<", "<< event-> GetEventID() <<", "<< track->GetKineticEnergy() <<", "<<
-			track->GetMomentumDirection().getTheta()/degree <<", "<< track->GetMomentumDirection().getPhi()/degree <<", "<<
-			track->GetPosition().getX() <<", "<< track->GetPosition().getY() <<", "<< track->GetPosition().getZ() <<"\n";
-
+		file << track->GetPosition().getX() <<", "<< track->GetPosition().getY() <<", "<< track->GetPosition().getZ() <<", "<<
+				step->GetTotalEnergyDeposit() <<", "<< track->GetGlobalTime() <<" "<< "\n";
 		file.close();
 	}
 	
-	
 	else{
 		file.open(name.c_str(), std::ofstream::out ); 
-		file << "Process, eventID, Energy, Theta, Phi, X, Y, Z \n";
+		file << "PosX, PosY, PosZ, Edep, t0 \n";
 	
-		file << processName <<", "<< event-> GetEventID() <<", "<< track->GetKineticEnergy() <<", "<<
-			track->GetMomentumDirection().getTheta()/degree <<", "<< track->GetMomentumDirection().getPhi()/degree <<", "<<
-			track->GetPosition().getX() <<", "<< track->GetPosition().getY() <<", "<< track->GetPosition().getZ() <<"\n";
+		file << track->GetPosition().getX() <<", "<< track->GetPosition().getY() <<", "<< track->GetPosition().getZ() <<", "<<
+				step->GetTotalEnergyDeposit() <<", "<< track->GetGlobalTime() <<" "<< "\n";
 
     	file.close();
 	}
